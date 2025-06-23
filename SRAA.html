@@ -1,1 +1,2833 @@
-#
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IslamicHub | Quran, Hadith, Prayer Times & More</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #9c27b0; /* Purple */
+            --secondary-color: #f8f9fa; /* Light gray */
+            --accent-color: #e91e63; /* Pink */
+            --dark-color: #2c3e50; /* Dark blue */
+            --light-color: #ffffff; /* White */
+            --text-color: #333333; /* Dark text */
+            --arabic-color: #673ab7; /* Deep purple for Arabic text */
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .arabic-font {
+            font-family: 'Amiri', serif;
+            color: var(--arabic-color);
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color)) !important;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: white !important;
+        }
+        
+        .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: white !important;
+            transform: translateY(-2px);
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1542816417-0983670d9661?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 8rem 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        }
+        
+        .feature-card {
+            transition: all 0.3s ease;
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 20px;
+            height: 100%;
+            background-color: var(--light-color);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .prayer-time {
+            background-color: var(--light-color);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .prayer-time:hover {
+            transform: translateX(5px);
+        }
+        
+        .prayer-time.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            box-shadow: 0 5px 15px rgba(156, 39, 176, 0.3);
+        }
+        
+        .live-stream-container {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 3rem 0;
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        }
+        
+        .social-icon {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            color: var(--accent-color);
+            transform: scale(1.2);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border: none;
+            box-shadow: 0 4px 10px rgba(156, 39, 176, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #8e24aa, #d81b60);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(156, 39, 176, 0.4);
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-outline-primary:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            text-align: center;
+            color: var(--dark-color);
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+        }
+        
+        .verse-container {
+            background-color: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .arabic-text {
+            font-size: 2rem;
+            line-height: 3rem;
+            text-align: right;
+            direction: rtl;
+            color: var(--arabic-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .translation-text {
+            font-size: 1.2rem;
+            line-height: 1.8rem;
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .tafsir-text {
+            font-size: 1rem;
+            line-height: 1.8rem;
+            color: var(--text-color);
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin-top: 20px;
+            background-color: rgba(233, 30, 99, 0.05);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .hadith-card {
+            margin-bottom: 25px;
+        }
+        
+        .login-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress-bar {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        }
+        
+        .bookmark-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(156, 39, 176, 0.1);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        
+        .bookmark-btn:hover {
+            background: rgba(156, 39, 176, 0.2);
+            transform: scale(1.1);
+        }
+        
+        /* Prayer times highlight */
+        .prayer-highlight {
+            background: linear-gradient(135deg, rgba(156, 39, 176, 0.1), rgba(233, 30, 99, 0.1));
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        /* Islamic patterns */
+        .islamic-pattern {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%239C27B0" fill-opacity="0.05" d="M50 0c13.8 0 25 11.2 25 25S63.8 50 50 50 25 38.8 25 25 36.2 0 50 0zm0 10c-8.3 0-15 6.7-15 15s6.7 15 15 15 15-6.7 15-15-6.7-15-15-15zM0 50c0-13.8 11.2-25 25-25s25 11.2 25 25-11.2 25-25 25S0 63.8 0 50zm10 0c0 8.3 6.7 15 15 15s15-6.7 15-15-6.7-15-15-15-15 6.7-15 15zm40 0c0-13.8 11.2-25 25-25s25 11.2 25 25-11.2 25-25 25-25-11.2-25-25zm10 0c0 8.3 6.7 15 15 15s15-6.7 15-15-6.7-15-15-15-15 6.7-15 15zM25 75c-13.8 0-25-11.2-25-25s11.2-25 25-25 25 11.2 25 25-11.2 25-25 25zm0-10c8.3 0 15-6.7 15-15s-6.7-15-15-15-15 6.7-15 15 6.7 15 15 15zm25 10c-13.8 0-25-11.2-25-25s11.2-25 25-25 25 11.2 25 25-11.2 25-25 25zm0-10c8.3 0 15-6.7 15-15s-6.7-15-15-15-15 6.7-15 15 6.7 15 15 15z"/></svg>');
+            background-size: 200px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Islamic border */
+        .islamic-border {
+            border: 2px solid var(--primary-color);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .islamic-border::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        }
+        
+        /* Dua container */
+        .dua-container {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .dua-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        }
+        
+        /* Moon phases for Islamic calendar */
+        .moon-phase {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--dark-color);
+            margin-right: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Floating mosque icon */
+        .mosque-icon {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .mosque-icon:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Quran progress tracker */
+        .juz-progress {
+            height: 10px;
+            border-radius: 5px;
+            background-color: #e0e0e0;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        
+        .juz-progress-bar {
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 5px;
+        }
+        
+        /* Islamic calendar day */
+        .islamic-day {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            color: var(--dark-color);
+            font-weight: 500;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .islamic-day:hover {
+            border-color: var(--primary-color);
+            transform: scale(1.1);
+        }
+        
+        .islamic-day.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+        }
+        
+        /* Prayer time animation */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Responsive fixes */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 5rem 0;
+            }
+            
+            .arabic-text {
+                font-size: 1.5rem;
+                line-height: 2.2rem;
+            }
+            
+            .verse-container {
+                padding: 15px;
+            }
+        }
+        
+        /* New styles for additional sections */
+        .fiqh-card {
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        
+        .fiqh-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .course-card {
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .course-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .blog-card {
+            transition: all 0.3s ease;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .blog-category {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .video-card {
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .video-duration {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        
+        .forum-post {
+            border-left: 3px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        
+        .forum-post:hover {
+            transform: translateX(5px);
+        }
+        
+        .event-card {
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .event-date {
+            background: var(--primary-color);
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .dark-mode {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+        }
+        
+        .dark-mode .card {
+            background-color: #2d2d2d;
+            color: #f0f0f0;
+        }
+        
+        .dark-mode .text-muted {
+            color: #b0b0b0 !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Mosque Icon -->
+    <div class="mosque-icon" id="backToTop">
+        <i class="fas fa-mosque"></i>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <i class="fas fa-mosque"></i> IslamicHub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#quran">Quran</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#prayer">Prayer</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#fiqh">Fiqh</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#courses">Courses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#duas">Duas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#videos">Videos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#ask-mufti">Ask Mufti</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#community">Community</a></li>
+                </ul>
+                <div class="ms-3">
+                    <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        <i class="fas fa-user"></i> Login
+                    </button>
+                    <button class="btn btn-outline-light ms-2" id="darkModeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section islamic-pattern" id="home">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-4">Your Complete Islamic Resource</h1>
+            <p class="lead mb-5">Explore the Quran, Hadith, Prayer Times, Islamic Jurisprudence and more in one place</p>
+            <div class="row g-3 justify-content-center">
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <input type="text" class="form-control form-control-lg" placeholder="Search Quran, Hadith, Islamic Articles..." id="globalSearch">
+                        <button class="btn btn-primary" type="button" id="searchButton">
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Daily Quote Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card feature-card islamic-border">
+                        <div class="card-body text-center">
+                            <div class="arabic-text mb-4" style="font-size: 1.8rem;">
+                                قَالَ رَسُولُ اللَّهِ ﷺ: إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ
+                            </div>
+                            <p class="lead">The Messenger of Allah (ﷺ) said: "Actions are judged by intentions."</p>
+                            <p class="text-muted">Sahih al-Bukhari 1 | Sahih Muslim 1907</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5 bg-light islamic-pattern">
+        <div class="container">
+            <h2 class="text-center section-title">What We Offer</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card card h-100">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon">
+                                <i class="fas fa-book-quran"></i>
+                            </div>
+                            <h4>Complete Quran</h4>
+                            <p>With translations in multiple languages, tafsir, audio recitations by famous reciters, and tajweed rules.</p>
+                            <a href="#quran" class="btn btn-outline-primary">Explore Quran</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card card h-100">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h4>Prayer Times</h4>
+                            <p>Accurate prayer times for any location worldwide with qibla direction and mosque finder.</p>
+                            <a href="#prayer" class="btn btn-outline-primary">Check Times</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card card h-100">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            <i class="fas fa-book-open"></i>
+                            <i class="fas fa-hands-praying"></i>
+                            <i class="fas fa-hand-holding-heart"></i>
+                            <i class="fas fa-mosque"></i>
+                            <i class="fas fa-calendar-alt"></i>
+                            <i class="fas fa-users"></i>
+                            <i class="fas fa-question-circle"></i>
+                            <i class="fas fa-video"></i>
+                            <i class="fas fa-newspaper"></i>
+                            <i class="fas fa-comments"></i>
+                            <i class="fas fa-lightbulb"></i>
+                            <i class="fas fa-language"></i>
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <h4>All Islamic Needs</h4>
+                        <p>Comprehensive resources covering all aspects of Islamic life and learning.</p>
+                        <a href="#features" class="btn btn-outline-primary">Explore All</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quran Section -->
+    <section class="py-5" id="quran">
+        <div class="container">
+            <h2 class="text-center section-title">The Holy Quran</h2>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card mb-4 feature-card islamic-border">
+                        <div class="card-body">
+                            <h4><i class="fas fa-search me-2"></i> Search the Quran</h4>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Search by keyword..." id="quranSearch">
+                                <button class="btn btn-primary" type="button" id="quranSearchBtn">Search</button>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Surah</label>
+                                <select class="form-select" id="surahSelect">
+                                    <option value="">Select Surah</option>
+                                    <!-- Surahs will be populated by JavaScript -->
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Translation</label>
+                                <select class="form-select" id="translationSelect">
+                                    <option value="en.sahih">English (Sahih International)</option>
+                                    <option value="ur.maududi">Urdu (Maududi)</option>
+                                    <option value="ar.maududi">Arabic (Maududi)</option>
+                                    <option value="fr.hamidullah">French (Hamidullah)</option>
+                                    <option value="es.cortes">Spanish (Cortes)</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Reciter</label>
+                                <select class="form-select" id="reciterSelect">
+                                    <option value="ar.alafasy">Mishary Alafasy</option>
+                                    <option value="ar.abdulsamad">Abdul Basit</option>
+                                    <option value="ar.husary">Mahmoud Khalil Al-Hussary</option>
+                                    <option value="ar.minshawi">Mohamed Siddiq El-Minshawi</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-primary w-100" id="randomAyahBtn">
+                                <i class="fas fa-random me-2"></i>Random Ayah
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="card feature-card islamic-border">
+                        <div class="card-body">
+                            <h4><i class="fas fa-bookmark me-2"></i> My Bookmarks</h4>
+                            <div id="bookmarksList">
+                                <p class="text-muted">No bookmarks yet. Login to save verses.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card feature-card mt-4 islamic-border">
+                        <div class="card-body">
+                            <h4><i class="fas fa-tasks me-2"></i> Quran Progress</h4>
+                            <p>Track your Quran reading progress by Juz</p>
+                            <div class="juz-progress">
+                                <div class="juz-progress-bar" style="width: 25%"></div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <small>Juz 1</small>
+                                <small>Juz 30</small>
+                            </div>
+                            <button class="btn btn-outline-primary w-100 mt-3">Update Progress</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="card feature-card islamic-border">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h4 id="surahName">Surah Al-Fatiha</h4>
+                                <div>
+                                    <button class="btn btn-sm btn-outline-primary me-2" id="prevAyah">
+                                        <i class="fas fa-arrow-left"></i> Previous
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-primary" id="nextAyah">
+                                        Next <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="verse-container">
+                                <button class="bookmark-btn" title="Bookmark this verse">
+                                    <i class="far fa-bookmark"></i>
+                                </button>
+                                <div class="arabic-text arabic-font mb-4" id="arabicText">
+                                    بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+                                </div>
+                                <div class="translation-text mb-3" id="translationText">
+                                    In the name of Allah, the Entirely Merciful, the Especially Merciful.
+                                </div>
+                                <div class="tafsir-text" id="tafsirText">
+                                    This is the first verse of the Quran and is recited before every surah except Surah At-Tawbah. It emphasizes Allah's attributes of mercy and compassion.
+                                </div>
+                            </div>
+                            
+                            <div class="text-center mt-4">
+                                <audio controls class="w-100" id="ayahAudio">
+                                    <source src="https://verses.quran.com/ar.alafasy/1/1.mp3" type="audio/mpeg">
+                                </audio>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between mt-4">
+                                <button class="btn btn-outline-primary" id="tafsirToggle">
+                                    <i class="fas fa-info-circle me-2"></i>Show Tafsir
+                                </button>
+                                <div>
+                                    <button class="btn btn-outline-secondary me-2" id="copyAyah">
+                                        <i class="fas fa-copy me-2"></i>Copy
+                                    </button>
+                                    <button class="btn btn-outline-secondary" id="shareAyah">
+                                        <i class="fas fa-share-alt me-2"></i>Share
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card feature-card mt-4 islamic-border">
+                        <div class="card-body">
+                            <h4><i class="fas fa-link me-2"></i> Related Verses</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="dua-container">
+                                        <div class="arabic-text text-center mb-3" style="font-size: 1.3rem;">
+                                            قُلْ هُوَ اللَّهُ أَحَدٌ
+                                        </div>
+                                        <p class="text-center">"Say, 'He is Allah, the One.' (112:1)</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="dua-container">
+                                        <div class="arabic-text text-center mb-3" style="font-size: 1.3rem;">
+                                            اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ
+                                        </div>
+                                        <p class="text-center">"Allah - there is no deity except Him, the Ever-Living, the Sustainer of existence." (2:255)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prayer Times Section -->
+    <section class="py-5 bg-light islamic-pattern" id="prayer">
+        <div class="container">
+            <h2 class="text-center section-title">Prayer Times & Namaz Guide</h2>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="card feature-card mb-4 islamic-border">
+                        <div class="card-body">
+                            <h4><i class="fas fa-map-marker-alt me-2"></i> Location Settings</h4>
+                            <div class="mb-3">
+                                <label class="form-label">Method</label>
+                                <select class="form-select" id="prayerMethod">
+                                    <option value="2">Muslim World League</option>
+                                    <option value="1">University of Islamic Sciences, Karachi</option>
+                                    <option value="3">Umm al-Qura, Makkah</option>
+                                    <option value="4">Egyptian General Authority of Survey</option>
+                                    <option value="5">Islamic Society of North America</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Country</label>
+                                <select class="form-select" id="countrySelect">
+                                    <option value="">Select Country</option>
+                                    <!-- Countries will be populated by JavaScript -->
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">City</label>
+                                <select class="form-select" id="citySelect" disabled>
+                                    <option value="">Select City</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Calculation Method</label>
+                                <select class="form-select" id="calculationMethod">
+                                    <option value="0">Angle-Based</option>
+                                    <option value="1">Middle of the Night</option>
+                                    <option value="2">One Seventh of the Night</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-primary w-100" id="savePrayerSettings">
+                                <i class="fas fa-save me-2"></i>Save Settings
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="card feature-card islamic-border">
+                        <div class="card-body">
+                            <h4><i class="fas fa-compass me-2"></i> Qibla Direction</h4>
+                            <div class="text-center my-3">
+                                <div id="qiblaCompass" style="width: 200px; height: 200px; margin: 0 auto; position: relative;">
+                                    <img src="https://www.islamicfinder.org/images/compass.png" alt="Compass" style="width: 100%;">
+                                    <div id="qiblaArrow" style="position: absolute; top: 50%; left: 50%; width: 50%; height: 2px; background-color: var(--accent-color); transform-origin: left center; transform: rotate(0deg) translateX(-50%);"></div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <p>Qibla direction for your current location:</p>
+                                <h3 id="qiblaDirection">118° Southeast</h3>
+                                <button class="btn btn-outline-primary mt-2" id="findQibla">
+                                    <i class="fas fa-location-arrow me-2"></i>Find Qibla
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Namaz Guide -->
+                    <div class="card feature-card mt-4 islamic-border">
+                        <div class="card-body">
+                            <h4><i class="fas fa-hands-praying me-2"></i> Namaz Guide</h4>
+                            <div class="list-group">
+                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    How to Perform Wudu
+                                    <span class="badge bg-primary rounded-pill">Guide</span>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    Step-by-Step Salah
+                                    <span class="badge bg-primary rounded-pill">Guide</span>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    Common Mistakes in Salah
+                                    <span class="badge bg-primary rounded-pill">Article</span>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    Women's Salah Rules
+                                    <span class="badge bg-primary rounded-pill">Fiqh</span>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                                    Qaza Namaz Calculator
+                                    <span class="badge bg-primary rounded-pill">Tool</span>
+                                </a>
+                            </div>
+                            <div class="text-center mt-3">
+                                <button class="btn btn-outline-primary">View Complete Guide</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="card feature-card h-100 islamic-border">
+                        <div class="card-body">
+                            <div class="text-center mb-4">
+                                <h3 id="prayerLocation">Today's Prayer Times</h3>
+                                <p class="text-muted" id="prayerDate">New York, USA | June 15, 2025 | 8 Dhul-Hijjah 1446</p>
+                            </div>
+                            
+                            <div id="prayerTimesContainer">
+                                <!-- Prayer times will be populated by JavaScript -->
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h5><i class="fas fa-calendar-alt me-2"></i> Monthly Prayer Calendar</h5>
+                                <div id="monthlyCalendar" class="mt-3">
+                                    <!-- Calendar will be populated by JavaScript -->
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4 text-center">
+                                <button class="btn btn-primary" id="downloadCalendar">
+                                    <i class="fas fa-download me-2"></i>Download Calendar
+                                </button>
+                                <button class="btn btn-outline-primary ms-2" id="setReminders">
+                                    <i class="fas fa-bell me-2"></i>Set Reminders
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fiqh Section (Hanafi Fiqh) -->
+    <section class="py-5" id="fiqh">
+        <div class="container">
+            <h2 class="text-center section-title">Hanafi Fiqh & Masail</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 fiqh-card">
+                        <div class="card-body">
+                            <h4><i class="fas fa-hands-praying me-2"></i> Taharah (Cleanliness)</h4>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    How to perform Wudu
+                                    <span class="badge bg-primary rounded-pill">12</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Ghusl Rules
+                                    <span class="badge bg-primary rounded-pill">8</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Menstruation Rules
+                                    <span class="badge bg-primary rounded-pill">15</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Istinja (Purification)
+                                    <span class="badge bg-primary rounded-pill">5</span>
+                                </li>
+                            </ul>
+                            <div class="text-center mt-3">
+                                <button class="btn btn-outline-primary">Learn More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 fiqh-card">
+                        <div class="card-body">
+                            <h4><i class="fas fa-pray me-2"></i> Salah (Prayer)</h4>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Step-by-Step Salah
+                                    <span class="badge bg-primary rounded-pill">12</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Missed Prayers (Qada)
+                                    <span class="badge bg-primary rounded-pill">5</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Women's Salah Rules
+                                    <span class="badge bg-primary rounded-pill">7</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Friday Prayer
+                                    <span class="badge bg-primary rounded-pill">9</span>
+                                </li>
+                            </ul>
+                            <div class="text-center mt-3">
+                                <button class="btn btn-outline-primary">Learn More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 fiqh-card">
+                        <div class="card-body">
+                            <h4><i class="fas fa-hand-holding-dollar me-2"></i> Zakat & Charity</h4>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Zakat Calculator
+                                    <span class="badge bg-primary rounded-pill">New</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Who is eligible for Zakat?
+                                    <span class="badge bg-primary rounded-pill">8</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Zakat on Gold & Silver
+                                    <span class="badge bg-primary rounded-pill">5</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Business Zakat
+                                    <span class="badge bg-primary rounded-pill">7</span>
+                                </li>
+                            </ul>
+                            <div class="text-center mt-3">
+                                <button class="btn btn-outline-primary">Learn More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 fiqh-card">
+                        <div class="card-body">
+                            <h4><i class="fas fa-umbrella-beach me-2"></i> Fasting & Ramadan</h4>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Rules of Fasting
+                                    <span class="badge bg-primary rounded-pill">12</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Things that break fast
+                                    <span class="badge bg-primary rounded-pill">9</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Taraweeh Prayer
+                                    <span class="badge bg-primary rounded-pill">5</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Itikaf Rules
+                                    <span class="badge bg-primary rounded-pill">7</span>
+                                </li>
+                            </ul>
+                            <div class="text-center mt-3">
+                                <button class="btn btn-outline-primary">Learn More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 fiqh-card">
+                        <div class="card-body">
+                            <h4><i class="fas fa-ring me-2"></i> Marriage & Family</h4>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Marriage Requirements</li>
+                                <li class="list-group-item">Divorce Procedures</li>
+                                <li class="list-group-item">Children's Rights</li>
+                                <li class="list-group-item">Inheritance Rules</li>
+                            </ul>
+                            <div class="text-center mt-3">
+                                <button class="btn btn-outline-primary">Learn More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 fiqh-card">
+                        <div class="card-body">
+                            <h4><i class="fas fa-business-time me-2"></i> Business & Transactions</h4>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Halal and Haram in Business</li>
+                                <li class="list-group-item">Islamic Banking</li>
+                                <li class="list-group-item">Interest (Riba) Rules</li>
+                                <li class="list-group-item">Islamic Insurance</li>
+                            </ul>
+                            <div class="text-center mt-3">
+                                <button class="btn btn-outline-primary">Learn More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card feature-card islamic-border">
+                        <div class="card-body">
+                            <h4><i class="fas fa-question-circle me-2"></i> Ask a Scholar</h4>
+                            <p>Have a specific question about Hanafi Fiqh? Submit your question to our panel of scholars.</p>
+                            <form>
+                                <div class="mb-3">
+                                    <label class="form-label">Your Question</label>
+                                    <textarea class="form-control" rows="3" placeholder="Type your question here..."></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Category</label>
+                                    <select class="form-select">
+                                        <option>Select Category</option>
+                                        <option>Worship</option>
+                                        <option>Family</option>
+                                        <option>Business</option>
+                                        <option>Finance</option>
+                                        <option>Modern Issues</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit Question</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Islamic Courses Section -->
+    <section class="py-5 bg-light islamic-pattern" id="courses">
+        <div class="container">
+            <h2 class="text-center section-title">Islamic Courses</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 course-card">
+                        <div class="course-badge">Beginner</div>
+                        <img src="https://images.unsplash.com/photo-1568219656418-15c329312bf1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Basic Islam">
+                        <div class="card-body">
+                            <h5>Basic Islam Course</h5>
+                            <p class="text-muted">Learn the fundamentals of Islam including pillars, beliefs and practices.</p>
+                            <div class="progress mb-3">
+                                <div class="progress-bar" role="progressbar" style="width: 25%">25% Complete</div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span><i class="fas fa-video me-1"></i> 12 Lessons</span>
+                                <span><i class="fas fa-clock me-1"></i> 4 Hours</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <button class="btn btn-primary w-100">Start Course</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 course-card">
+                        <div class="course-badge">Intermediate</div>
+                        <img src="https://images.unsplash.com/photo-1519817650390-64a93db51149?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Hanafi Fiqh">
+                        <div class="card-body">
+                            <h5>Hanafi Fiqh Course</h5>
+                            <p class="text-muted">Detailed study of Hanafi jurisprudence covering worship, transactions and more.</p>
+                            <div class="progress mb-3">
+                                <div class="progress-bar" role="progressbar" style="width: 10%">10% Complete</div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span><i class="fas fa-video me-1"></i> 24 Lessons</span>
+                                <span><i class="fas fa-clock me-1"></i> 8 Hours</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <button class="btn btn-primary w-100">Start Course</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 course-card">
+                        <div class="course-badge">Advanced</div>
+                        <img src="https://images.unsplash.com/photo-1542816417-0983670d9661?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Tajweed">
+                        <div class="card-body">
+                            <h5>Tajweed Masterclass</h5>
+                            <p class="text-muted">Master the rules of Quranic recitation with proper pronunciation and articulation.</p>
+                            <div class="progress mb-3">
+                                <div class="progress-bar" role="progressbar" style="width: 5%">5% Complete</div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span><i class="fas fa-video me-1"></i> 36 Lessons</span>
+                                <span><i class="fas fa-clock me-1"></i> 12 Hours</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <button class="btn btn-primary w-100">Start Course</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card feature-card islamic-border">
+                        <div class="card-body">
+                            <h4><i class="fas fa-book-open me-2"></i> More Courses</h4>
+                            <div class="row">
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-star feature-icon"></i>
+                                            <h6>Sirah (Prophet's Life)</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-book feature-icon"></i>
+                                            <h6>Hadith Studies</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-heart feature-icon"></i>
+                                            <h6>Purification of Heart</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-home feature-icon"></i>
+                                            <h6>Islamic Parenting</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-dollar-sign feature-icon"></i>
+                                            <h6>Islamic Finance</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-graduation-cap feature-icon"></i>
+                                            <h6>New Muslim Guide</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-language feature-icon"></i>
+                                            <h6>Arabic Language</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-mosque feature-icon"></i>
+                                            <h6>Hajj & Umrah Guide</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center mt-4">
+                                <button class="btn btn-primary">View All Courses</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Duas Section -->
+    <section class="py-5" id="duas">
+        <div class="container">
+            <h2 class="text-center section-title">Daily Duas & Adhkar</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card feature-card h-100 islamic-border">
+                        <div class="card-body">
+                            <h4><i class="fas fa-sun me-2"></i> Morning Adhkar</h4>
+                            <div class="arabic-text text-center mb-3" style="font-size: 1.3rem; direction: rtl;">
+                                أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ
+                            </div>
+                            <p class="text-center">"We have reached the morning and at this very time all sovereignty belongs to Allah. Praise is to Allah. There is none worthy of worship but Allah, alone, without partner."</p>
+                            <div class="text-center mt-3">
+                                <audio controls class="w-100">
+                                    <source src="https://www.example.com/dua-audio.mp3" type="audio/mpeg">
+                                </audio>
+                            </div>
+                            <div class="mt-3">
+                                <h5>Benefits</h5>
+                                <p>Reciting this dua in the morning brings protection from harm and increases one's provision for the day. The Prophet (ﷺ) would recite this every morning.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card feature-card h-100 islamic-border">
+                        <div class="card-body">
+                            <h4><i class="fas fa-moon me-2"></i> Evening Adhkar</h4>
+                            <div class="arabic-text text-center mb-3" style="font-size: 1.3rem; direction: rtl;">
+                                أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ
+                            </div>
+                            <p class="text-center">"We have reached the evening and at this very time all sovereignty belongs to Allah. Praise is to Allah. There is none worthy of worship but Allah, alone, without partner."</p>
+                            <div class="text-center mt-3">
+                                <audio controls class="w-100">
+                                    <source src="https://www.example.com/dua-audio.mp3" type="audio/mpeg">
+                                </audio>
+                            </div>
+                            <div class="mt-3">
+                                <h5>Benefits</h5>
+                                <p>Reciting this dua in the evening brings protection from harm during the night and ensures Allah's care and mercy throughout the night.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-4 mb-4">
+                    <div class="card feature-card h-100 islamic-border">
+                        <div class="card-body">
+                            <h4><i class="fas fa-bed me-2"></i> Sleeping Duas</h4>
+                            <div class="arabic-text text-center mb-3" style="font-size: 1.2rem; direction: rtl;">
+                                بِاسْمِكَ رَبِّـي وَضَعْـتُ جَنْبِـي ، وَبِكَ أَرْفَعُـه، فَإِنْ أَمْسَـكْتَ نَفْسِـي فَارْحَـمْها ، وَإِنْ أَرْسَلْتَـها فَاحْفَظْـها بِمـا تَحْفَـظُ بِـه عِبـادَكَ الصّـالِحِـين
+                            </div>
+                            <p>"In Your name my Lord, I lie down and in Your name I rise, so if You should take my soul then have mercy upon it, and if You should return my soul then protect it in the manner You do so with Your righteous servants."</p>
+                            <button class="btn btn-sm btn-outline-primary mt-2">View More</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card feature-card h-100 islamic-border">
+                        <div class="card-body">
+                            <h4><i class="fas fa-utensils me-2"></i> Eating Duas</h4>
+                            <div class="arabic-text text-center mb-3" style="font-size: 1.2rem; direction: rtl;">
+                                بِسْمِ اللَّهِ وَعَلَى بَرَكَةِ اللَّهِ
+                            </div>
+                            <p>"In the name of Allah and with the blessings of Allah I begin (eating)."</p>
+                            <div class="arabic-text text-center mb-3 mt-4" style="font-size: 1.2rem; direction: rtl;">
+                                الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنَا وَسَقَانَا وَجَعَلَنَا مُسْلِمِينَ
+                            </div>
+                            <p>"All praise is due to Allah who has fed us and given us drink and made us Muslims."</p>
+                            <button class="btn btn-sm btn-outline-primary mt-2">View More</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card feature-card h-100 islamic-border">
+                        <div class="card-body">
+                            <h4><i class="fas fa-car me-2"></i> Travel Duas</h4>
+                            <div class="arabic-text text-center mb-3" style="font-size: 1.2rem; direction: rtl;">
+                                سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ وَإِنَّا إِلَى رَبِّنَا لَمُنْقَلِبُونَ
+                            </div>
+                            <p>"Glory to Him who has brought this under our control, though we were unable to control it. Indeed, to our Lord we will return."</p>
+                            <button class="btn btn-sm btn-outline-primary mt-2">View More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card feature-card islamic-border">
+                        <div class="card-body">
+                            <h4><i class="fas fa-book me-2"></i> Dua Categories</h4>
+                            <div class="row">
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-praying-hands feature-icon"></i>
+                                            <h6>Prayer Duas</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-home feature-icon"></i>
+                                            <h6>Home Duas</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-briefcase-medical feature-icon"></i>
+                                            <h6>Healing Duas</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-graduation-cap feature-icon"></i>
+                                            <h6>Knowledge Duas</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-baby feature-icon"></i>
+                                            <h6>Children Duas</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-heart feature-icon"></i>
+                                            <h6>Marriage Duas</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-dollar-sign feature-icon"></i>
+                                            <h6>Rizq Duas</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-shield-alt feature-icon"></i>
+                                            <h6>Protection Duas</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center mt-4">
+                                <button class="btn btn-primary">Explore All Duas</button>
+                                <button class="btn btn-outline-primary ms-2">Dua Book PDF</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Islamic Blog Section -->
+    <section class="py-5 bg-light islamic-pattern" id="blog">
+        <div class="container">
+            <h2 class="text-center section-title">Islamic Blog & Articles</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 blog-card">
+                        <div class="blog-category">Purification</div>
+                        <img src="https://images.unsplash.com/photo-1568219656418-15c329312bf1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Heart Purification">
+                        <div class="card-body">
+                            <h5>Purification of the Heart</h5>
+                            <p class="text-muted">Learn how to cleanse your heart from spiritual diseases like pride, envy and hatred.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted"><i class="fas fa-calendar me-1"></i> 2 days ago</small>
+                                <small class="text-muted"><i class="fas fa-eye me-1"></i> 1.2k views</small>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-sm btn-outline-primary">Read Article</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 blog-card">
+                        <div class="blog-category">Family</div>
+                        <img src="https://images.unsplash.com/photo-1519817650390-64a93db51149?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Islamic Parenting">
+                        <div class="card-body">
+                            <h5>Islamic Parenting in Modern Times</h5>
+                            <p class="text-muted">Practical tips for raising righteous children in today's challenging environment.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted"><i class="fas fa-calendar me-1"></i> 1 week ago</small>
+                                <small class="text-muted"><i class="fas fa-eye me-1"></i> 2.5k views</small>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-sm btn-outline-primary">Read Article</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 blog-card">
+                        <div class="blog-category">Women</div>
+                        <img src="https://images.unsplash.com/photo-1542816417-0983670d9661?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top" alt="Women in Islam">
+                        <div class="card-body">
+                            <h5>Status of Women in Islam</h5>
+                            <p class="text-muted">Understanding the rights and responsibilities of women according to Islamic teachings.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted"><i class="fas fa-calendar me-1"></i> 2 weeks ago</small>
+                                <small class="text-muted"><i class="fas fa-eye me-1"></i> 3.1k views</small>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-sm btn-outline-primary">Read Article</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card feature-card islamic-border">
+                        <div class="card-body">
+                            <h4><i class="fas fa-newspaper me-2"></i> Blog Categories</h4>
+                            <div class="row">
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-heart feature-icon"></i>
+                                            <h6>Purification</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-home feature-icon"></i>
+                                            <h6>Family Life</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-female feature-icon"></i>
+                                            <h6>Women's Issues</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-dollar-sign feature-icon"></i>
+                                            <h6>Islamic Finance</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-brain feature-icon"></i>
+                                            <h6>Mental Health</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-mobile-alt feature-icon"></i>
+                                            <h6>Technology</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-history feature-icon"></i>
+                                            <h6>Islamic History</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-question feature-icon"></i>
+                                            <h6>Q&A</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center mt-4">
+                                <button class="btn btn-primary">View All Articles</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Videos Section -->
+    <section class="py-5" id="videos">
+        <div class="container">
+            <h2 class="text-center section-title">Islamic Videos & Lectures</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 video-card">
+                        <div class="video-duration">12:34</div>
+                        <img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg" class="card-img-top" alt="Video Thumbnail">
+                        <div class="card-body">
+                            <h5>Importance of Salah in Islam</h5>
+                            <p class="text-muted">A short reminder about the significance of prayer in a Muslim's life.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted"><i class="fas fa-eye me-1"></i> 15k views</small>
+                                <small class="text-muted"><i class="fas fa-calendar me-1"></i> 1 week ago</small>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-sm btn-outline-primary">Watch Video</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 video-card">
+                        <div class="video-duration">45:21</div>
+                        <img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg" class="card-img-top" alt="Video Thumbnail">
+                        <div class="card-body">
+                            <h5>Hanafi Fiqh of Marriage</h5>
+                            <p class="text-muted">Detailed explanation of marriage rulings according to Hanafi school.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted"><i class="fas fa-eye me-1"></i> 8.2k views</small>
+                                <small class="text-muted"><i class="fas fa-calendar me-1"></i> 2 weeks ago</small>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-sm btn-outline-primary">Watch Video</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 video-card">
+                        <div class="video-duration">1:05:43</div>
+                        <img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg" class="card-img-top" alt="Video Thumbnail">
+                        <div class="card-body">
+                            <h5>Dealing with Anxiety Islamically</h5>
+                            <p class="text-muted">Practical Islamic solutions for managing stress and anxiety.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted"><i class="fas fa-eye me-1"></i> 22.5k views</small>
+                                <small class="text-muted"><i class="fas fa-calendar me-1"></i> 3 weeks ago</small>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-sm btn-outline-primary">Watch Video</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card feature-card islamic-border">
+                        <div class="card-body">
+                            <h4><i class="fas fa-video me-2"></i> Video Categories</h4>
+                            <div class="row">
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-book-quran feature-icon"></i>
+                                            <h6>Quran Tafsir</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-book feature-icon"></i>
+                                            <h6>Hadith</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-hands-praying feature-icon"></i>
+                                            <h6>Fiqh</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-heart feature-icon"></i>
+                                            <h6>Spirituality</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-home feature-icon"></i>
+                                            <h6>Family</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-dollar-sign feature-icon"></i>
+                                            <h6>Finance</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-history feature-icon"></i>
+                                            <h6>History</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-microphone feature-icon"></i>
+                                            <h6>Lectures</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center mt-4">
+                                <button class="btn btn-primary">View All Videos</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ask a Mufti Section -->
+    <section class="py-5 bg-light islamic-pattern" id="ask-mufti">
+        <div class="container">
+            <h2 class="text-center section-title">Ask a Mufti</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 islamic-border">
+                        <div class="card-body">
+                            <h4><i class="fas fa-question-circle me-2"></i> Submit Your Question</h4>
+                            <form>
+                                <div class="mb-3">
+                                    <label class="form-label">Your Question</label>
+                                    <textarea class="form-control" rows="5" placeholder="Type your Islamic question here..."></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Category</label>
+                                    <select class="form-select">
+                                        <option>Select Category</option>
+                                        <option>Worship (Ibadah)</option>
+                                        <option>Family & Marriage</option>
+                                        <option>Finance & Business</option>
+                                        <option>Modern Issues</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Your Name</label>
+                                    <input type="text" class="form-control" placeholder="Optional">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" placeholder="Required for response">
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Submit Question</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100 islamic-border">
+                        <div class="card-body">
+                            <h4><i class="fas fa-search me-2"></i> Browse Answered Questions</h4>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Search questions...">
+                                <button class="btn btn-primary" type="button">Search</button>
+                            </div>
+                            <div class="list-group">
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-1">Is music allowed in Islam according to Hanafi fiqh?</h6>
+                                        <small>3 days ago</small>
+                                    </div>
+                                    <p class="mb-1">Answered by Mufti Abdullah</p>
+                                    <small>Fiqh > Modern Issues</small>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-1">How to make up missed prayers from childhood?</h6>
+                                        <small>1 week ago</small>
+                                    </div>
+                                    <p class="mb-1">Answered by Mufti Ibrahim</p>
+                                    <small>Worship > Salah</small>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-1">Rules for investing in stock market according to Hanafi fiqh?</h6>
+                                        <small>2 weeks ago</small>
+                                    </div>
+                                    <p class="mb-1">Answered by Mufti Usman</p>
+                                    <small>Finance & Business</small>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-1">Can a woman lead mixed-gender prayers in exceptional circumstances?</h6>
+                                        <small>3 weeks ago</small>
+                                    </div>
+                                    <p class="mb-1">Answered by Mufti Aisha</p>
+                                    <small>Worship > Salah</small>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-1">How to deal with non-Muslim family members during holidays?</h6>
+                                        <small>1 month ago</small>
+                                    </div>
+                                    <p class="mb-1">Answered by Mufti Fatima</p>
+                                    <small>Family & Society</small>
+                                </a>
+                            </div>
+                            <div class="text-center mt-3">
+                                <button class="btn btn-outline-primary">View All Questions</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="py-5" id="community">
+        <div class="container">
+            <h2 class="text-center section-title">Islamic Community</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 islamic-border">
+                        <div class="card-body">
+                            <h4><i class="fas fa-comments me-2"></i> Discussion Forum</h4>
+                            <div class="forum-post p-3 mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <h5>How to increase concentration in Salah?</h5>
+                                    <small class="text-muted">2 hours ago</small>
+                                </div>
+                                <p class="mb-1">I find my mind wandering during prayer. Any practical tips to improve focus?</p>
+                                <small class="text-muted">Posted by: Ahmed | 5 replies</small>
+                            </div>
+                            <div class="forum-post p-3 mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <h5>Best Islamic books for new Muslims</h5>
+                                    <small class="text-muted">1 day ago</small>
+                                </div>
+                                <p class="mb-1">Looking for recommendations for books that explain Islam clearly to new converts.</p>
+                                <small class="text-muted">Posted by: Sarah | 12 replies</small>
+                            </div>
+                            <div class="forum-post p-3 mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <h5>Balancing work and Islamic obligations</h5>
+                                    <small class="text-muted">3 days ago</small>
+                                </div>
+                                <p class="mb-1">Struggling to find time for Quran and salah with a demanding job. Advice?</p>
+                                <small class="text-muted">Posted by: Yusuf | 8 replies</small>
+                            </div>
+                            <div class="text-center mt-3">
+                                <button class="btn btn-primary">Join Discussion</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100 islamic-border">
+                        <div class="card-body">
+                            <h4><i class="fas fa-calendar-alt me-2"></i> Islamic Events</h4>
+                            <div class="event-card mb-3">
+                                <div class="row g-0">
+                                    <div class="col-md-3 event-date">
+                                        <h5 class="mb-0">15</h5>
+                                        <p class="mb-0">June</p>
+                                        <small>2025</small>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="card-body">
+                                            <h5>Weekly Tafseer Class</h5>
+                                            <p class="mb-1">Tafseer of Surah Al-Baqarah by Sheikh Abdullah</p>
+                                            <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i> Online | 7:30 PM</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="event-card mb-3">
+                                <div class="row g-0">
+                                    <div class="col-md-3 event-date">
+                                        <h5 class="mb-0">20</h5>
+                                        <p class="mb-0">June</p>
+                                        <small>2025</small>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="card-body">
+                                            <h5>New Muslim Support Group</h5>
+                                            <p class="mb-1">Monthly gathering for new Muslims to ask questions and connect</p>
+                                            <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i> Islamic Center | 6:00 PM</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="event-card mb-3">
+                                <div class="row g-0">
+                                    <div class="col-md-3 event-date">
+                                        <h5 class="mb-0">25</h5>
+                                        <p class="mb-0">June</p>
+                                        <small>2025</small>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="card-body">
+                                            <h5>Islamic Finance Workshop</h5>
+                                            <p class="mb-1">Learn how to manage finances according to Islamic principles</p>
+                                            <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i> Community Hall | 5:00 PM</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center mt-3">
+                                <button class="btn btn-primary">View All Events</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card feature-card islamic-border">
+                        <div class="card-body">
+                            <h4><i class="fas fa-mosque me-2"></i> Mosque Finder</h4>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Enter your location...">
+                                <button class="btn btn-primary" type="button">Find Mosques</button>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Mosque Name</th>
+                                            <th>Distance</th>
+                                            <th>Jama'at Times</th>
+                                            <th>Contact</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Islamic Center of New York</td>
+                                            <td>1.2 miles</td>
+                                            <td>Fajr: 5:30 AM, Dhuhr: 1:30 PM, Asr: 4:30 PM, Maghrib: Sunset, Isha: 8:30 PM</td>
+                                            <td>(555) 123-4567</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Masjid Al-Rahman</td>
+                                            <td>2.5 miles</td>
+                                            <td>Fajr: 5:45 AM, Dhuhr: 1:15 PM, Asr: 4:45 PM, Maghrib: Sunset, Isha: 8:45 PM</td>
+                                            <td>(555) 987-6543</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Darul Uloom Islamic Center</td>
+                                            <td>3.1 miles</td>
+                                            <td>Fajr: 5:15 AM, Dhuhr: 1:00 PM, Asr: 4:15 PM, Maghrib: Sunset, Isha: 8:15 PM</td>
+                                            <td>(555) 456-7890</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="mb-4">Stay Updated</h2>
+                    <p class="lead mb-4">Subscribe to our newsletter for daily hadith, Islamic reminders, and updates.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control form-control-lg" placeholder="Your Email Address" id="newsletterEmail">
+                        <button class="btn btn-light" type="button" id="subscribeBtn">Subscribe</button>
+                    </div>
+                    <small>We respect your privacy. Unsubscribe at any time.</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h4><i class="fas fa-mosque"></i> IslamicHub</h4>
+                    <p>Your comprehensive resource for Quran, Hadith, Prayer Times, Islamic Jurisprudence and more.</p>
+                    <div class="mt-3">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white">Home</a></li>
+                        <li class="mb-2"><a href="#" class="text-white">Quran</a></li>
+                        <li class="mb-2"><a href="#" class="text-white">Prayer Times</a></li>
+                        <li class="mb-2"><a href="#" class="text-white">Fiqh</a></li>
+                        <li class="mb-2"><a href="#" class="text-white">Courses</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white">Duas</a></li>
+                        <li class="mb-2"><a href="#" class="text-white">Blog</a></li>
+                        <li class="mb-2"><a href="#" class="text-white">Videos</a></li>
+                        <li class="mb-2"><a href="#" class="text-white">Ask a Mufti</a></li>
+                        <li class="mb-2"><a href="#" class="text-white">Community</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5>Contact Us</h5>
+                    <p><i class="fas fa-envelope me-2"></i> contact@islamichub.com</p>
+                    <p><i class="fas fa-phone me-2"></i> +1 (123) 456-7890</p>
+                    <p><i class="fas fa-map-marker-alt me-2"></i> 123 Islamic Street, Knowledge City</p>
+                </div>
+            </div>
+            <hr class="mt-0 mb-4" style="border-color: rgba(255,255,255,0.1);">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2025 IslamicHub. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0">
+                        <a href="#" class="text-white">Privacy Policy</a> | 
+                        <a href="#" class="text-white">Terms of Service</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Login to IslamicHub</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="loginEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="loginPassword" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Remember me</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <p>Don't have an account? <a href="#" id="showRegister">Register</a></p>
+                        <p><a href="#" id="forgotPassword">Forgot password?</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerModalLabel">Create Account</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="registerForm">
+                        <div class="mb-3">
+                            <label for="registerName" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="registerName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerEmail" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="registerEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="registerPassword" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerConfirmPassword" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="registerConfirmPassword" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="agreeTerms" required>
+                            <label class="form-check-label" for="agreeTerms">I agree to the <a href="#">Terms of Service</a></label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Register</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <p>Already have an account? <a href="#" id="showLogin">Login</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="forgotPasswordModalLabel">Reset Password</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="forgotPasswordForm">
+                        <div class="mb-3">
+                            <label for="resetEmail" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="resetEmail" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Send Reset Link</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <p>Remember your password? <a href="#" id="showLoginFromForgot">Login</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <!-- Custom JS -->
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDEXAMPLEEXAMPLEEXAMPLEEXAMPLE",
+            authDomain: "islamichub-example.firebaseapp.com",
+            projectId: "islamichub-example",
+            storageBucket: "islamichub-example.appspot.com",
+            messagingSenderId: "123456789012",
+            appId: "1:123456789012:web:abc123abc123abc123abc123"
+        };
+        
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        
+        // DOM Elements
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const forgotPasswordForm = document.getElementById('forgotPasswordForm');
+        const showRegister = document.getElementById('showRegister');
+        const showLogin = document.getElementById('showLogin');
+        const showLoginFromForgot = document.getElementById('showLoginFromForgot');
+        const forgotPassword = document.getElementById('forgotPassword');
+        const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+        const registerModal = new bootstrap.Modal(document.getElementById('registerModal'));
+        const forgotPasswordModal = new bootstrap.Modal(document.getElementById('forgotPasswordModal'));
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        
+        // Modal navigation
+        showRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.hide();
+            registerModal.show();
+        });
+        
+        showLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            registerModal.hide();
+            loginModal.show();
+        });
+        
+        showLoginFromForgot.addEventListener('click', (e) => {
+            e.preventDefault();
+            forgotPasswordModal.hide();
+            loginModal.show();
+        });
+        
+        forgotPassword.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.hide();
+            forgotPasswordModal.show();
+        });
+        
+        // Dark mode toggle
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            darkModeToggle.innerHTML = document.body.classList.contains('dark-mode') ? 
+                '<i class="fas fa-sun"></i>' : 
+                '<i class="fas fa-moon"></i>';
+            
+            // Save preference to localStorage
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        });
+        
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+        
+        // Login function
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = loginEmail.value;
+            const password = loginPassword.value;
+            const rememberMe = document.getElementById('rememberMe').checked;
+            
+            auth.setPersistence(rememberMe ? firebase.auth.Auth.Persistence.LOCAL : firebase.auth.Auth.Persistence.SESSION)
+                .then(() => {
+                    return auth.signInWithEmailAndPassword(email, password);
+                })
+                .then((userCredential) => {
+                    // Signed in
+                    const user = userCredential.user;
+                    loginModal.hide();
+                    alert('Login successful!');
+                    updateUI();
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    alert(errorMessage);
+                });
+        });
+        
+        // Register function
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = registerName.value;
+            const email = registerEmail.value;
+            const password = registerPassword.value;
+            const confirmPassword = registerConfirmPassword.value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            auth.createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Signed in
+                    const user = userCredential.user;
+                    
+                    // Add user data to Firestore
+                    return db.collection('users').doc(user.uid).set({
+                        name: name,
+                        email: email,
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                        bookmarks: []
+                    });
+                })
+                .then(() => {
+                    registerModal.hide();
+                    alert('Registration successful!');
+                    updateUI();
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    alert(errorMessage);
+                });
+        });
+        
+        // Forgot password function
+        forgotPasswordForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = resetEmail.value;
+            
+            auth.sendPasswordResetEmail(email)
+                .then(() => {
+                    alert('Password reset email sent!');
+                    forgotPasswordModal.hide();
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    alert(errorMessage);
+                });
+        });
+        
+        // Update UI based on auth state
+        function updateUI() {
+            auth.onAuthStateChanged((user) => {
+                if (user) {
+                    // User is signed in
+                    document.querySelector('.navbar .btn-outline-light').innerHTML = `
+                        <i class="fas fa-user"></i> My Account
+                    `;
+                    
+                    // Load user bookmarks
+                    loadBookmarks(user.uid);
+                } else {
+                    // User is signed out
+                    document.querySelector('.navbar .btn-outline-light').innerHTML = `
+                        <i class="fas fa-user"></i> Login
+                    `;
+                }
+            });
+        }
+        
+        // Load bookmarks from Firestore
+        function loadBookmarks(userId) {
+            db.collection('users').doc(userId).get()
+                .then((doc) => {
+                    if (doc.exists) {
+                        const bookmarks = doc.data().bookmarks || [];
+                        const bookmarksList = document.getElementById('bookmarksList');
+                        
+                        if (bookmarks.length > 0) {
+                            let html = '<ul class="list-group">';
+                            bookmarks.forEach(bookmark => {
+                                html += `
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        ${bookmark.surahName}:${bookmark.ayahNumber}
+                                        <button class="btn btn-sm btn-outline-danger" onclick="removeBookmark('${userId}', '${bookmark.id}')">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </li>
+                                `;
+                            });
+                            html += '</ul>';
+                            bookmarksList.innerHTML = html;
+                        } else {
+                            bookmarksList.innerHTML = '<p class="text-muted">No bookmarks yet. Click the bookmark icon on verses to save them.</p>';
+                        }
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error loading bookmarks:", error);
+                });
+        }
+        
+        // Bookmark functionality
+        function addBookmark(userId, surahNumber, ayahNumber, surahName, arabicText, translation) {
+            const bookmarkId = `${surahNumber}_${ayahNumber}`;
+            
+            db.collection('users').doc(userId).update({
+                bookmarks: firebase.firestore.FieldValue.arrayUnion({
+                    id: bookmarkId,
+                    surahNumber: surahNumber,
+                    ayahNumber: ayahNumber,
+                    surahName: surahName,
+                    arabicText: arabicText,
+                    translation: translation,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                })
+            })
+            .then(() => {
+                alert('Verse bookmarked!');
+                loadBookmarks(userId);
+            })
+            .catch((error) => {
+                console.error("Error adding bookmark:", error);
+            });
+        }
+        
+        function removeBookmark(userId, bookmarkId) {
+            db.collection('users').doc(userId).get()
+                .then((doc) => {
+                    const bookmarks = doc.data().bookmarks;
+                    const updatedBookmarks = bookmarks.filter(bookmark => bookmark.id !== bookmarkId);
+                    
+                    return db.collection('users').doc(userId).update({
+                        bookmarks: updatedBookmarks
+                    });
+                })
+                .then(() => {
+                    alert('Bookmark removed!');
+                    loadBookmarks(userId);
+                })
+                .catch((error) => {
+                    console.error("Error removing bookmark:", error);
+                });
+        }
+        
+        // Quran API functionality
+        const surahSelect = document.getElementById('surahSelect');
+        const translationSelect = document.getElementById('translationSelect');
+        const reciterSelect = document.getElementById('reciterSelect');
+        const arabicText = document.getElementById('arabicText');
+        const translationText = document.getElementById('translationText');
+        const tafsirText = document.getElementById('tafsirText');
+        const surahName = document.getElementById('surahName');
+        const ayahAudio = document.getElementById('ayahAudio');
+        const prevAyah = document.getElementById('prevAyah');
+        const nextAyah = document.getElementById('nextAyah');
+        const randomAyahBtn = document.getElementById('randomAyahBtn');
+        const tafsirToggle = document.getElementById('tafsirToggle');
+        const copyAyah = document.getElementById('copyAyah');
+        const shareAyah = document.getElementById('shareAyah');
+        const bookmarkBtn = document.querySelector('.bookmark-btn');
+        
+        let currentSurah = 1;
+        let currentAyah = 1;
+        let totalAyahs = 7; // Default to Al-Fatiha
+        
+        // Fetch list of surahs
+        fetch('https://api.alquran.cloud/v1/surah')
+            .then(response => response.json())
+            .then(data => {
+                const surahs = data.data;
+                surahSelect.innerHTML = '<option value="">Select Surah</option>';
+                
+                surahs.forEach(surah => {
+                    const option = document.createElement('option');
+                    option.value = surah.number;
+                    option.textContent = `${surah.number}. ${surah.englishName} (${surah.name})`;
+                    surahSelect.appendChild(option);
+                });
+            });
+        
+        // Load a specific ayah
+        function loadAyah(surahNumber, ayahNumber) {
+            currentSurah = surahNumber;
+            currentAyah = ayahNumber;
+            
+            // Fetch Arabic text
+            fetch(`https://api.alquran.cloud/v1/ayah/${surahNumber}:${ayahNumber}/ar.alafasy`)
+                .then(response => response.json())
+                .then(data => {
+                    arabicText.textContent = data.data.text;
+                    
+                    // Update surah name
+                    surahName.textContent = `Surah ${data.data.surah.englishName} (${data.data.surah.name}) - Ayah ${ayahNumber}`;
+                    
+                    // Update total ayahs for this surah
+                    totalAyahs = data.data.surah.numberOfAyahs;
+                    
+                    // Update audio source
+                    const reciter = reciterSelect.value;
+                    ayahAudio.src = `https://verses.quran.com/${reciter}/${surahNumber}/${ayahNumber}.mp3`;
+                    
+                    // Enable/disable navigation buttons
+                    prevAyah.disabled = ayahNumber <= 1;
+                    nextAyah.disabled = ayahNumber >= totalAyahs;
+                });
+            
+            // Fetch translation
+            const translation = translationSelect.value;
+            fetch(`https://api.alquran.cloud/v1/ayah/${surahNumber}:${ayahNumber}/${translation}`)
+                .then(response => response.json())
+                .then(data => {
+                    translationText.textContent = data.data.text;
+                });
+            
+            // Fetch tafsir (simplified for demo)
+            fetch(`https://api.alquran.cloud/v1/ayah/${surahNumber}:${ayahNumber}/tafsir/en.maududi`)
+                .then(response => response.json())
+                .then(data => {
+                    tafsirText.textContent = data.data.text || "Tafsir not available for this verse.";
+                });
+        }
+        
+        // Event listeners for Quran section
+        surahSelect.addEventListener('change', (e) => {
+            if (e.target.value) {
+                loadAyah(e.target.value, 1);
+            }
+        });
+        
+        translationSelect.addEventListener('change', () => {
+            loadAyah(currentSurah, currentAyah);
+        });
+        
+        reciterSelect.addEventListener('change', () => {
+            const reciter = reciterSelect.value;
+            ayahAudio.src = `https://verses.quran.com/${reciter}/${currentSurah}/${currentAyah}.mp3`;
+        });
+        
+        prevAyah.addEventListener('click', () => {
+            if (currentAyah > 1) {
+                loadAyah(currentSurah, currentAyah - 1);
+            }
+        });
+        
+        nextAyah.addEventListener('click', () => {
+            if (currentAyah < totalAyahs) {
+                loadAyah(currentSurah, currentAyah + 1);
+            }
+        });
+        
+        randomAyahBtn.addEventListener('click', () => {
+            const randomSurah = Math.floor(Math.random() * 114) + 1;
+            fetch(`https://api.alquran.cloud/v1/surah/${randomSurah}`)
+                .then(response => response.json())
+                .then(data => {
+                    const randomAyah = Math.floor(Math.random() * data.data.numberOfAyahs) + 1;
+                    loadAyah(randomSurah, randomAyah);
+                });
+        });
+        
+        tafsirToggle.addEventListener('click', () => {
+            tafsirText.style.display = tafsirText.style.display === 'none' ? 'block' : 'none';
+            tafsirToggle.innerHTML = tafsirText.style.display === 'none' ? 
+                '<i class="fas fa-info-circle me-2"></i>Show Tafsir' : 
+                '<i class="fas fa-info-circle me-2"></i>Hide Tafsir';
+        });
+        
+        copyAyah.addEventListener('click', () => {
+            const textToCopy = `${arabicText.textContent}\n\n${translationText.textContent}`;
+            navigator.clipboard.writeText(textToCopy)
+                .then(() => alert('Verse copied to clipboard!'))
+                .catch(() => alert('Failed to copy verse'));
+        });
+        
+        shareAyah.addEventListener('click', () => {
+            if (navigator.share) {
+                navigator.share({
+                    title: `Quran ${currentSurah}:${currentAyah}`,
+                    text: `${arabicText.textContent}\n\n${translationText.textContent}`,
+                    url: window.location.href
+                })
+                .catch(error => console.log('Error sharing:', error));
+            } else {
+                alert('Web Share API not supported in your browser');
+            }
+        });
+        
+        bookmarkBtn.addEventListener('click', () => {
+            const user = auth.currentUser;
+            if (user) {
+                addBookmark(
+                    user.uid,
+                    currentSurah,
+                    currentAyah,
+                    surahName.textContent,
+                    arabicText.textContent,
+                    translationText.textContent
+                );
+            } else {
+                loginModal.show();
+            }
+        });
+        
+        // Prayer Times functionality
+        const countrySelect = document.getElementById('countrySelect');
+        const citySelect = document.getElementById('citySelect');
+        const prayerMethod = document.getElementById('prayerMethod');
+        const calculationMethod = document.getElementById('calculationMethod');
+        const savePrayerSettings = document.getElementById('savePrayerSettings');
+        const prayerLocation = document.getElementById('prayerLocation');
+        const prayerDate = document.getElementById('prayerDate');
+        const prayerTimesContainer = document.getElementById('prayerTimesContainer');
+        const findQibla = document.getElementById('findQibla');
+        const qiblaDirection = document.getElementById('qiblaDirection');
+        const qiblaArrow = document.getElementById('qiblaArrow');
+        
+        // Fetch list of countries
+        fetch('https://api.aladhan.com/v1/counts')
+            .then(response => response.json())
+            .then(data => {
+                const countries = Object.keys(data.data);
+                countrySelect.innerHTML = '<option value="">Select Country</option>';
+                
+                countries.forEach(country => {
+                    const option = document.createElement('option');
+                    option.value = country;
+                    option.textContent = country;
+                    countrySelect.appendChild(option);
+                });
+                
+                // Load saved settings if available
+                const savedCountry = localStorage.getItem('prayerCountry');
+                if (savedCountry) {
+                    countrySelect.value = savedCountry;
+                    loadCities(savedCountry);
+                    
+                    const savedCity = localStorage.getItem('prayerCity');
+                    if (savedCity) {
+                        setTimeout(() => {
+                            citySelect.value = savedCity;
+                            loadPrayerTimes(savedCountry, savedCity);
+                        }, 500);
+                    }
+                }
+            });
+        
+        // Load cities for selected country
+        function loadCities(country) {
+            fetch(`https://api.aladhan.com/v1/cities/${country}`)
+                .then(response => response.json())
+                .then(data => {
+                    const cities = data.data;
+                    citySelect.innerHTML = '<option value="">Select City</option>';
+                    citySelect.disabled = false;
+                    
+                    cities.forEach(city => {
+                        const option = document.createElement('option');
+                        option.value = city;
+                        option.textContent = city;
+                        citySelect.appendChild(option);
+                    });
+                });
+        }
+        
+        // Load prayer times for selected city
+        function loadPrayerTimes(country, city) {
+            const method = prayerMethod.value;
+            const calculation = calculationMethod.value;
+            const date = new Date();
+            const day = date.getDate();
+            const month = date.getMonth() + 1;
+            const year = date.getFullYear();
+            
+            fetch(`https://api.aladhan.com/v1/timingsByCity/${day}-${month}-${year}?city=${city}&country=${country}&method=${method}&tune=${calculation}`)
+                .then(response => response.json())
+                .then(data => {
+                    const timings = data.data.timings;
+                    const dateInfo = data.data.date;
+                    
+                    // Update location and date
+                    prayerLocation.textContent = `Today's Prayer Times - ${city}, ${country}`;
+                    prayerDate.textContent = `${dateInfo.gregorian.weekday.en}, ${dateInfo.gregorian.day} ${dateInfo.gregorian.month.en} ${year} | ${dateInfo.hijri.day} ${dateInfo.hijri.month.en} ${dateInfo.hijri.year}`;
+                    
+                    // Update prayer times
+                    prayerTimesContainer.innerHTML = '';
+                    
+                    const prayers = [
+                        { name: 'Fajr', time: timings.Fajr, icon: 'fas fa-sun' },
+                        { name: 'Sunrise', time: timings.Sunrise, icon: 'fas fa-sun' },
+                        { name: 'Dhuhr', time: timings.Dhuhr, icon: 'fas fa-sun' },
+                        { name: 'Asr', time: timings.Asr, icon: 'fas fa-sun' },
+                        { name: 'Maghrib', time: timings.Maghrib, icon: 'fas fa-moon' },
+                        { name: 'Isha', time: timings.Isha, icon: 'fas fa-moon' }
+                    ];
+                    
+                    prayers.forEach(prayer => {
+                        const prayerDiv = document.createElement('div');
+                        prayerDiv.className = 'prayer-time';
+                        prayerDiv.innerHTML = `
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <i class="${prayer.icon} me-2"></i>
+                                    <h5 class="mb-0 d-inline">${prayer.name}</h5>
+                                </div>
+                                <h5 class="mb-0">${prayer.time}</h5>
+                            </div>
+                            ${prayer.name === 'Fajr' ? '<small>Starts at ' + timings.Imsak + '</small>' : ''}
+                            ${prayer.name === 'Sunrise' ? '<small>End of Fajr time</small>' : ''}
+                        `;
+                        prayerTimesContainer.appendChild(prayerDiv);
+                    });
+                    
+                    // Update current prayer highlight
+                    updateCurrentPrayerHighlight(timings);
+                });
+        }
+        
+        // Update current prayer highlight
+        function updateCurrentPrayerHighlight(timings) {
+            const now = new Date();
+            const currentHours = now.getHours();
+            const currentMinutes = now.getMinutes();
+            const currentTime = currentHours * 60 + currentMinutes;
+            
+            const prayerTimes = [
+                { name: 'Fajr', time: timings.Fajr },
+                { name: 'Sunrise', time: timings.Sunrise },
+                { name: 'Dhuhr', time: timings.Dhuhr },
+                { name: 'Asr', time: timings.Asr },
+                { name: 'Maghrib', time: timings.Maghrib },
+                { name: 'Isha', time: timings.Isha }
+            ];
+            
+            // Convert prayer times to minutes since midnight
+            const prayerTimesInMinutes = prayerTimes.map(prayer => {
+                const [hours, minutes] = prayer.time.split(':').map(Number);
+                return {
+                    name: prayer.name,
+                    minutes: hours * 60 + minutes
+                };
+            });
+            
+            // Find current prayer
+            let currentPrayer = null;
+            for (let i = 0; i < prayerTimesInMinutes.length - 1; i++) {
+                if (currentTime >= prayerTimesInMinutes[i].minutes && currentTime < prayerTimesInMinutes[i + 1].minutes) {
+                    currentPrayer = prayerTimesInMinutes[i].name;
+                    break;
+                }
+            }
+            
+            // If after last prayer of the day, highlight Isha
+            if (!currentPrayer && currentTime >= prayerTimesInMinutes[prayerTimesInMinutes.length - 1].minutes) {
+                currentPrayer = prayerTimesInMinutes[prayerTimesInMinutes.length - 1].name;
+            }
+            
+            // Update active class
+            const prayerElements = document.querySelectorAll('.prayer-time');
+            prayerElements.forEach(element => {
+                element.classList.remove('active');
+                if (element.textContent.includes(currentPrayer)) {
+                    element.classList.add('active');
+                }
+            });
+        }
+        
+        // Find Qibla direction
+        function findQiblaDirection() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+                        
+                        // Calculate Qibla direction (simplified)
+                        // In a real app, you would use a more accurate formula
+                        const qiblaAngle = Math.floor(Math.random() * 360); // Placeholder
+                        
+                        qiblaDirection.textContent = `${qiblaAngle}° ${getDirection(qiblaAngle)}`;
+                        qiblaArrow.style.transform = `rotate(${qiblaAngle}deg) translateX(-50%)`;
+                        
+                        alert(`Qibla direction found! Facing ${getDirection(qiblaAngle)} (${qiblaAngle}°).`);
+                    },
+                    (error) => {
+                        alert('Error getting location: ' + error.message);
+                    }
+                );
+            } else {
+                alert('Geolocation is not supported by your browser.');
+            }
+        }
+        
+        // Helper function to get compass direction
+        function getDirection(angle) {
+            const directions = ['North', 'Northeast', 'East', 'Southeast', 'South', 'Southwest', 'West', 'Northwest'];
+            return directions[Math.round(angle / 45) % 8];
+        }
+        
+        // Event listeners for prayer times section
+        countrySelect.addEventListener('change', (e) => {
+            if (e.target.value) {
+                loadCities(e.target.value);
+            }
+        });
+        
+        citySelect.addEventListener('change', (e) => {
+            if (e.target.value && countrySelect.value) {
+                loadPrayerTimes(countrySelect.value, e.target.value);
+            }
+        });
+        
+        prayerMethod.addEventListener('change', () => {
+            if (citySelect.value && countrySelect.value) {
+                loadPrayerTimes(countrySelect.value, citySelect.value);
+            }
+        });
+        
+        calculationMethod.addEventListener('change', () => {
+            if (citySelect.value && countrySelect.value) {
+                loadPrayerTimes(countrySelect.value, citySelect.value);
+            }
+        });
+        
+        savePrayerSettings.addEventListener('click', () => {
+            if (citySelect.value && countrySelect.value) {
+                localStorage.setItem('prayerCountry', countrySelect.value);
+                localStorage.setItem('prayerCity', citySelect.value);
+                localStorage.setItem('prayerMethod', prayerMethod.value);
+                localStorage.setItem('calculationMethod', calculationMethod.value);
+                alert('Prayer settings saved!');
+            } else {
+                alert('Please select a country and city first.');
+            }
+        });
+        
+        findQibla.addEventListener('click', findQiblaDirection);
+        
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Show/hide back to top button based on scroll position
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+        
+        // Initialize UI
+        updateUI();
+        loadAyah(1, 1); // Load Al-Fatiha:1 by default
+        
+        // Initialize tooltips
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    </script>
+</body>
+</html>
